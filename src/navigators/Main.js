@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthScreen, Example, Onboarding } from '../screens';
+import { AuthScreen, HomeScreen, Onboarding } from '../screens';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
@@ -13,7 +13,7 @@ const MainNavigator = () => {
     >
       <Stack.Screen name="Onboarding" component={Onboarding} />
       <Stack.Screen name="Auth" component={AuthScreen} />
-      <Stack.Screen name="Home" component={Example} />
+      <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
   );
 };

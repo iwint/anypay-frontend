@@ -4,20 +4,10 @@ import { TextInput } from 'react-native';
 import { Colors } from '../../theme/Variables';
 import { Fonts } from '../../theme';
 
-const Input = ({
-  keyboardType,
-  index,
-  label,
-  icon,
-  placeholder,
-  onChange,
-  value,
-  type,
-}) => {
+const Input = ({ index, label, icon, placeholder, onChange, value, type }) => {
   return (
-    <View>
+    <>
       <Text
-        key={index}
         style={[{ marginTop: 10, color: Colors.textPrimary }, Fonts().textBold]}
       >
         {label}
@@ -30,25 +20,31 @@ const Input = ({
           borderColor: '#9CA3AF',
           borderWidth: 1,
           borderRadius: 8,
-          marginTop: 10,
-          height: 50,
+          marginTop: 5,
         }}
       >
         {icon}
 
         <TextInput
+          key={index}
+          id={index}
+          ref={ref => (this.input = ref)}
+          onPressIn={e => {
+            if (index === e.currentTarget.currentProps.id) {
+              e.target.focus();
+            }
+          }}
           secureTextEntry={type === 'password'}
           onChange={val => {
             onChange(val.nativeEvent.text);
           }}
-          keyboardAppearance="default"
           inputMode={type}
-          style={{ marginLeft: 10, width: '90%', height: '100%' }}
+          style={{ marginLeft: 10, width: '90%', height: 50, zIndex: 1 }}
           placeholder={placeholder}
           value={value}
         />
       </View>
-    </View>
+    </>
   );
 };
 

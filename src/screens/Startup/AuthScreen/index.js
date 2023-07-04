@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header } from '../../../components';
 import TopSection from './TopSection';
 import BottomSection from './BottomSection';
@@ -8,6 +8,7 @@ import PhoneIcon from '../../../assets/icons/PhoneIcon';
 import EmailIcon from '../../../assets/icons/EmailIcon';
 import UserIcon from '../../../assets/icons/UserIcon';
 import { useState } from 'react';
+import { ToastAndroid } from 'react-native';
 
 const AuthScreen = ({ navigation }) => {
   const type = navigation
@@ -16,17 +17,24 @@ const AuthScreen = ({ navigation }) => {
       route => route.params !== undefined && route.params.type !== undefined,
     ).params?.type;
 
-  const [authData, setAuthData] = useState(
-    type === 'sign_in'
-      ? {
-          mobile: '',
-        }
-      : {
-          name: '',
-          email: '',
-          mobile: '',
-        },
-  );
+  const [authData, setAuthData] = useState({});
+
+  const signInData = {
+    mobile: '',
+  };
+  const signUpData = {
+    name: '',
+    email: '',
+    mobile: '',
+  };
+
+  useEffect(() => {
+    if (type === 'sign_in') {
+      setAuthData(signInData);
+    } else {
+      setAuthData(signUpData);
+    }
+  }, [type]);
 
   const signInForm = [
     {
@@ -86,13 +94,19 @@ const AuthScreen = ({ navigation }) => {
   ];
 
   const handleSubmit = async () => {
-    console.log('AUTH DETAILS ==>', authData);
-  };
-
-  const handleNavigation = () => {
-    navigation.replace('Auth', {
-      type: type === 'sign_in' ? 'sign_up' : 'sign_in',
-    });
+    // ToastAndroid.show(
+    //   `${
+    //     type === 'sign_in'
+    //       ? 'Sign in sucessfully done'
+    //       : 'Sign up sucessfully done'
+    //   }`,
+    //   ToastAndroid.SHORT,
+    // );
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{ name: 'Home' }],
+    // });
+    // console.log(navigation);
   };
 
   return (
@@ -109,9 +123,7 @@ const AuthScreen = ({ navigation }) => {
       <TopSection type={type} />
       <BottomSection
         type={type}
-        handleNavigation={() => {
-          handleNavigation();
-        }}
+        handleNavigation={navigation}
         handleSubmit={handleSubmit}
         formData={type === 'sign_up' ? signUpForm : signInForm}
       />

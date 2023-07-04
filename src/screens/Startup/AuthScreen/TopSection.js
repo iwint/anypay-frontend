@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { Fonts, Layout } from '../../../theme';
+import Onboard1 from '../../../assets/illustrations/Onboard1';
 
 const TopSection = ({ type }) => {
   console.log('Type', type);

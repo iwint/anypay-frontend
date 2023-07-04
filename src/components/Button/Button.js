@@ -13,9 +13,10 @@ export default function ({ title, onPress, height, color, bgColor }) {
           height: height ? height : 60,
           backgroundColor: bgColor ? bgColor : Colors.primary,
           zIndex: 1,
+          marginTop: 10,
         },
       ]}
-      onPress={onPress}
+      onPressIn={onPress}
     >
       <Text
         style={[

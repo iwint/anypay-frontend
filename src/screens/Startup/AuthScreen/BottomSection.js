@@ -1,14 +1,17 @@
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { Button, Input } from '../../../components';
 import UserIcon from '../../../assets/icons/UserIcon';
-import { Colors } from '../../../theme/Variables';
+import { Colors, FontSize } from '../../../theme/Variables';
 import { Pressable } from 'react-native';
 import { Fonts, Layout } from '../../../theme';
+import Onboard1 from '../../../assets/illustrations/Onboard1';
+import Onboard2 from '../../../assets/illustrations/Onboard2';
 
 const BottomSection = ({ formData, type, handleSubmit, handleNavigation }) => {
   return (
-    <View style={[Layout().fullWidth, { gap: 15 }]}>
+    <View style={[Layout().fullWidth, { gap: 10 }]}>
+      {type === 'sign_in' ? <Onboard2 /> : null}
       {formData?.map((inputField, index) => {
         return (
           <Input
@@ -33,11 +36,26 @@ const BottomSection = ({ formData, type, handleSubmit, handleNavigation }) => {
         <Text style={[Fonts().textBold, Fonts().textLight]}>
           Don't have account ?
         </Text>
-        <Pressable onPress={handleNavigation}>
-          <Text style={[Fonts().textBold, Fonts().textPrimary]}>
+        <TouchableOpacity
+          onPressIn={() => {
+            console.log('SIGN IN');
+            handleNavigation.navigate('Auth', {
+              type: type === 'sign_up' ? 'sign_in' : 'sign_up',
+            });
+          }}
+        >
+          <Text
+            style={[
+              Fonts().textBold,
+              Fonts().textPrimary,
+              {
+                fontSize: FontSize.regular - 3,
+              },
+            ]}
+          >
             {type === 'sign_up' ? 'Sign in' : 'Sign up'}
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );
