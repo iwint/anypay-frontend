@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import React, { useEffect } from 'react';
 import { Header } from '../../../components';
-import TopSection from './TopSection';
+import TopSection from '../TopSection';
 import BottomSection from './BottomSection';
 import { Layout } from '../../../theme';
 import PhoneIcon from '../../../assets/icons/PhoneIcon';
@@ -18,7 +18,13 @@ const AuthScreen = ({ navigation }) => {
     ).params?.type;
 
   const [authData, setAuthData] = useState({});
-
+  const Content = {
+    title: type === 'sign_in' ? 'Welcome Back!' : 'Sign Up',
+    description:
+      type === 'sign_in'
+        ? 'Sign In to your account'
+        : 'Create account and enjoy all services',
+  };
   const signInData = {
     mobile: '',
   };
@@ -94,19 +100,31 @@ const AuthScreen = ({ navigation }) => {
   ];
 
   const handleSubmit = async () => {
-    // ToastAndroid.show(
-    //   `${
-    //     type === 'sign_in'
-    //       ? 'Sign in sucessfully done'
-    //       : 'Sign up sucessfully done'
-    //   }`,
-    //   ToastAndroid.SHORT,
-    // );
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{ name: 'Home' }],
-    // });
-    // console.log(navigation);
+    if (
+      (type === 'sign_up' &&
+        authData?.name != '' &&
+        authData?.email != '' &&
+        authData?.mobile != '') ||
+      (type === 'sign_in' && authData?.mobile != '')
+    ) {
+      ToastAndroid.show(
+        `${
+          type === 'sign_in'
+            ? 'Sign in sucessfully done'
+            : 'Sign up sucessfully done'
+        }`,
+        ToastAndroid.SHORT,
+      );
+      navigation.navigate({
+        name: 'Otp',
+        params: {
+          mobile: authData?.mobile,
+        },
+      });
+      console.log(navigation);
+    } else {
+      ToastAndroid.show('Please fill all fields', ToastAndroid.SHORT);
+    }
   };
 
   return (
@@ -120,7 +138,7 @@ const AuthScreen = ({ navigation }) => {
       ]}
     >
       <Header navigation={navigation} />
-      <TopSection type={type} />
+      <TopSection Content={Content} type={type} />
       <BottomSection
         type={type}
         handleNavigation={navigation}

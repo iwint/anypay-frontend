@@ -1,17 +1,9 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import { Fonts, Layout } from '../../../theme';
-import Onboard1 from '../../../assets/illustrations/Onboard1';
+import { Fonts, Layout } from '../../theme';
+import Onboard1 from '../../assets/illustrations/Onboard1';
 
-const TopSection = ({ type }) => {
-  console.log('Type', type);
-  const Content = {
-    title: type === 'sign_in' ? 'Welcome Back!' : 'Sign Up',
-    description:
-      type === 'sign_in'
-        ? 'Sign In to your account'
-        : 'Create account and enjoy all services',
-  };
+const TopSection = ({ Content }) => {
   return (
     <View
       style={[
