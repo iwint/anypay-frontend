@@ -6,18 +6,16 @@ import { Pressable } from 'react-native';
 import Button from '../Button/Button';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Header = ({ navigation }) => {
+const Header = ({ navigation, arrowColor }) => {
   return (
     <View style={[Layout().rowCenter, Layout().justifyContentBetween]}>
       <TouchableOpacity
         onPress={() => {
-          console.log('Hey');
           navigation.goBack();
         }}
       >
-        <BackArrowIcon />
+        <BackArrowIcon color={arrowColor} />
       </TouchableOpacity>
-      {/* <Text>Header</Text> */}
     </View>
   );
 };

@@ -10,7 +10,7 @@ import Onboard2 from '../../../assets/illustrations/Onboard2';
 
 const BottomSection = ({ formData, type, handleSubmit, handleNavigation }) => {
   return (
-    <View style={[Layout().fullWidth, { gap: 10 }]}>
+    <View style={[Layout().fullWidth, { gap: 5 }]}>
       {type === 'sign_in' ? <Onboard2 /> : null}
       {formData?.map((inputField, index) => {
         return (
@@ -29,10 +29,17 @@ const BottomSection = ({ formData, type, handleSubmit, handleNavigation }) => {
         );
       })}
       <Button
+        customStyle={{ marginTop: '8%' }}
         onPress={handleSubmit}
         title={type === 'sign_up' ? 'Register' : 'Sign in'}
       />
-      <View style={[Layout().row, Layout().center, { gap: 5, width: '100%' }]}>
+      <View
+        style={[
+          Layout().row,
+          Layout().center,
+          { gap: 5, width: '100%', marginTop: '2%' },
+        ]}
+      >
         <Text style={[Fonts().textBold, Fonts().textLight]}>
           Don't have account ?
         </Text>

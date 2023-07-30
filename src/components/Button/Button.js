@@ -2,7 +2,14 @@ import { Text, TouchableOpacity } from 'react-native';
 import { Common, Fonts, Gutters, Layout } from '../../theme';
 import { Colors, FontSize } from '../../theme/Variables';
 
-export default function ({ title, onPress, height, color, bgColor }) {
+export default function ({
+  title,
+  onPress,
+  height,
+  color,
+  bgColor,
+  customStyle,
+}) {
   return (
     <TouchableOpacity
       style={[
@@ -14,6 +21,7 @@ export default function ({ title, onPress, height, color, bgColor }) {
           backgroundColor: bgColor ? bgColor : Colors.primary,
           zIndex: 1,
           marginTop: 10,
+          ...customStyle,
         },
       ]}
       onPressIn={onPress}

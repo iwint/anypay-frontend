@@ -2,8 +2,9 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import { Fonts, Layout } from '../../theme';
 import Onboard1 from '../../assets/illustrations/Onboard1';
+import { Colors } from '../../theme/Variables';
 
-const TopSection = ({ Content }) => {
+const TopSection = ({ Content, dark, titleStyle, contentStyle }) => {
   return (
     <View
       style={[
@@ -15,7 +16,11 @@ const TopSection = ({ Content }) => {
       <Text
         style={[
           Fonts().textBold,
-          { fontSize: Fonts().textLarge.fontSize - 10 },
+          {
+            fontSize: Fonts().textLarge.fontSize - 10,
+            color: dark ? Colors.white : Colors.black,
+            ...titleStyle,
+          },
         ]}
       >
         {Content.title}
@@ -25,6 +30,8 @@ const TopSection = ({ Content }) => {
           Fonts().textLight,
           {
             fontSize: Fonts().textSmall.fontSize,
+            lineHeight: 30,
+            ...contentStyle,
           },
         ]}
       >

@@ -2,7 +2,7 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import { ClipPath, Defs, G, Path, Rect, Svg } from 'react-native-svg';
 
-const BackArrowIcon = () => {
+const BackArrowIcon = ({ color }) => {
   return (
     <Svg
       width="24"
@@ -14,21 +14,21 @@ const BackArrowIcon = () => {
       <G clip-path="url(#clip0_50_9241)">
         <Path
           d="M5 12H19"
-          stroke="#111827"
+          stroke={color ? color : '#111827'}
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
         <Path
           d="M5 12L11 18"
-          stroke="#111827"
+          stroke={color ? color : '#111827'}
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
         <Path
           d="M5 12L11 6"
-          stroke="#111827"
+          stroke={color ? color : '#111827'}
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"

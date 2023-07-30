@@ -11,6 +11,7 @@ export const Colors = {
   transparent: 'rgba(0,0,0,0)',
   inputBackground: '#FFFFFF',
   white: '#ffffff',
+  blue: '#022964',
   //Typography
   textGray800: '#000000',
   textPrimary: '#111827',
@@ -21,7 +22,7 @@ export const Colors = {
   error: '#dc3545',
   //ComponentColors
   circleButtonBackground: '#E1E1EF',
-  circleButtonColor: '#44427D',
+  circleButtonColor: '#1B3E74',
 };
 export const NavigationColors = {
   primary: Colors.primary,

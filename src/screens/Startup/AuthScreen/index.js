@@ -14,8 +14,8 @@ const AuthScreen = ({ navigation }) => {
   const type = navigation
     .getState()
     .routes.find(
-      route => route.params !== undefined && route.params.type !== undefined,
-    ).params?.type;
+      route => route?.params !== undefined && route?.params.type !== undefined,
+    )?.params?.type;
 
   const [authData, setAuthData] = useState({});
   const Content = {

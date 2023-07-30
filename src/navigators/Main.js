@@ -1,21 +1,20 @@
 import React from 'react';
 import { AuthScreen, HomeScreen, Onboarding, OtpScreen } from '../screens';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import StartupNavigator from './StartUp';
+import EmailIcon from '../assets/icons/EmailIcon';
 
-const Stack = createStackNavigator();
+const Tab = createStackNavigator();
 // @refresh reset
 const MainNavigator = () => {
-  const token = null;
   return (
-    <Stack.Navigator
-      initialRouteName={token ? 'Home' : 'Onboarding'}
+    <Tab.Navigator
+      initialRouteName={'Home'}
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="Onboarding" component={Onboarding} />
-      <Stack.Screen name="Auth" component={AuthScreen} />
-      <Stack.Screen name="Otp" component={OtpScreen} />
-      <Stack.Screen name="Home" component={HomeScreen} />
-    </Stack.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} options={{}} />
+    </Tab.Navigator>
   );
 };
 export default MainNavigator;
