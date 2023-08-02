@@ -11,7 +11,7 @@ const Navigations = () => {
   const token = null;
   return (
     <Stack.Navigator
-      initialRouteName={token ? 'Main' : 'Startup'}
+      initialRouteName={!token ? 'Main' : 'Startup'}
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="Startup" component={StartupNavigator} />

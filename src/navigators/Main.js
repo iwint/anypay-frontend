@@ -1,11 +1,16 @@
 import React from 'react';
-import { AuthScreen, HomeScreen, Onboarding, OtpScreen } from '../screens';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  CardsScreen,
+  HomeScreen,
+  ProfileScreen,
+  StatsScreen,
+} from '../screens';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import StartupNavigator from './StartUp';
-import EmailIcon from '../assets/icons/EmailIcon';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeIcon from '../assets/icons/HomeIcon';
+import StatsIcon from '../assets/icons/StatsIcon';
 
-const Tab = createStackNavigator();
+const Tab = createBottomTabNavigator();
 // @refresh reset
 const MainNavigator = () => {
   return (
@@ -13,7 +18,38 @@ const MainNavigator = () => {
       initialRouteName={'Home'}
       screenOptions={{ headerShown: false }}
     >
-      <Tab.Screen name="Home" component={HomeScreen} options={{}} />
+      <Tab.Screen
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, focused }) => <HomeIcon />,
+        }}
+        name="Home"
+        component={HomeScreen}
+      />
+      <Tab.Screen
+        options={{
+          tabBarLabel: 'Stats',
+          tabBarIcon: ({ color, focused }) => <StatsIcon />,
+        }}
+        name="Stats"
+        component={StatsScreen}
+      />
+      <Tab.Screen
+        // options={{
+        //   tabBarLabel: 'Home',
+        //   tabBarIcon: ({ color, focused }) => <HomeIcon />,
+        // }}
+        name="Cards"
+        component={CardsScreen}
+      />
+      <Tab.Screen
+        // options={{
+        //   tabBarLabel: 'Home',
+        //   tabBarIcon: ({ color, focused }) => <HomeIcon />,
+        // }}
+        name="Profile"
+        component={ProfileScreen}
+      />
     </Tab.Navigator>
   );
 };
